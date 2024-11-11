@@ -8,20 +8,50 @@ Integrantes del grupo:
 import flet as ft
 import time
 from home import homePage
+from db import verify_user, create_db
 
+create_db()
 def loginPage(page: ft.Page):
-    def mostrarInicio(e):
-        page.clean()
-        page.add(
-            ft.Lottie(
-                src = "https://lottie.host/2d82e44c-9a3a-4f3d-baf2-3c7e5ac14cd8/UllxeRPqGP.json",
-                repeat = True,
+
+    email = ft.TextField(
+                expand = True,
+                color = "white",
+                border_color = "transparent",
+                hint_text = "Email",
+                hint_style = ft.TextStyle(color = "#b9babb"),
+                content_padding = 0
             )
-        )
-        page.update()
-        time.sleep(2.5)
-        page.clean()
-        homePage(page)
+    password = ft.TextField(
+                expand = True,
+                color = "white",
+                border_color = "transparent",
+                hint_text = "Password",
+                hint_style = ft.TextStyle(color = "#b9babb"),
+                content_padding = 0,
+                password = True,
+                can_reveal_password = True
+            )
+    def mostrarInicio(e):
+        emailVal = email.value
+        passwordVal = password.value
+        if verify_user(emailVal, passwordVal):
+            page.clean()
+            page.add(
+                ft.Lottie(
+                    src = "https://lottie.host/2d82e44c-9a3a-4f3d-baf2-3c7e5ac14cd8/UllxeRPqGP.json",
+                    repeat = True,
+                )
+            )
+            page.update()
+            time.sleep(2.5)
+            page.clean()
+            homePage(page)
+        else:
+            page.dialog = ft.AlertDialog(
+                title = ft.Text("Usuario o contraseña incorrectos"),
+            )
+            page.dialog.open = True
+            page.update()
     
     page.bgcolor = ft.colors.BLUE_GREY_800
     page.title = "Login"
@@ -70,14 +100,7 @@ def loginPage(page: ft.Page):
                                 color = "#b9babb"
                             ),
                             ft.VerticalDivider(width = 1, color = "#b9babb"),
-                            ft.TextField(
-                                expand = True,
-                                color = "white",
-                                border_color = "transparent",
-                                hint_text = "Email",
-                                hint_style = ft.TextStyle(color = "#b9babb"),
-                                content_padding = 0
-                            )
+                            email
                         ]
                     )
                 ),
@@ -95,16 +118,7 @@ def loginPage(page: ft.Page):
                                 color = "#b9babb"
                             ),
                             ft.VerticalDivider(width = 1, color = "#b9babb"),
-                            ft.TextField(
-                                expand = True,
-                                color = "white",
-                                border_color = "transparent",
-                                hint_text = "Password",
-                                hint_style = ft.TextStyle(color = "#b9babb"),
-                                content_padding = 0,
-                                password = True,
-                                can_reveal_password = True
-                            )
+                            password
                         ]
                     )
                 ),
