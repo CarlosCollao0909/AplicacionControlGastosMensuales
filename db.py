@@ -16,16 +16,6 @@ def create_db():
     conn.commit()
     conn.close()
 
-def add_user(nombre, apellido, email, password):
-    conn = sqlite3.connect('gastos.db')
-    cursor = conn.cursor()
-    cursor.execute('''
-        INSERT INTO usuarios (nombre, apellido, email, password)
-        VALUES (?, ?, ?, ?)
-    ''', (nombre, apellido, email, password))
-    conn.commit()
-    conn.close()
-
 def verify_user(email, password):
     conn = sqlite3.connect('gastos.db')
     cursor = conn.cursor()

@@ -9,6 +9,7 @@ import flet as ft
 import time
 from home import homePage
 from db import verify_user, create_db
+from register import registerPage
 
 create_db()
 def loginPage(page: ft.Page):
@@ -35,6 +36,7 @@ def loginPage(page: ft.Page):
         emailVal = email.value
         passwordVal = password.value
         if verify_user(emailVal, passwordVal):
+            print(verify_user(emailVal, passwordVal))
             page.clean()
             page.add(
                 ft.Lottie(
@@ -53,6 +55,11 @@ def loginPage(page: ft.Page):
             page.dialog.open = True
             page.update()
     
+    def mostrarRegistro(e):
+        page.clean()
+        registerPage(page)
+        page.update()
+
     page.bgcolor = ft.colors.BLUE_GREY_800
     page.title = "Login"
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -140,7 +147,16 @@ def loginPage(page: ft.Page):
                             ),
                         )
                     ),
-                )
+                ),
+                ft.Container(
+                    alignment = ft.alignment.center,
+                    padding = ft.padding.only(top = 15),
+                    content = ft.CupertinoButton(
+                        text = "¿No tienes cuenta?",
+                        color = "white",
+                        on_click = mostrarRegistro
+                    ),
+                ),
             ]
         )
     )
