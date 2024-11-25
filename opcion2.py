@@ -1,6 +1,11 @@
 import flet as ft
 from datetime import datetime
 from db import registrar_gasto, get_user_id, get_gastos_usuario
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
+import os
 
 # Variable global para almacenar el email del usuario actual
 current_user_email = None
@@ -25,7 +30,6 @@ def abrirFormulario(page):
         prefix_icon=ft.icons.MONEY
     )
     
-    # Usar DatePicker con botón para abrir
     def open_date_picker(e):
         def handle_change(e):
             page.selected_date = e.control.value.strftime('%Y-%m-%d')
@@ -168,6 +172,70 @@ def cargar_historial():
 
     return get_gastos_usuario(usuario_id)
 
+# Función para exportar el historial a PDF
+def exportar_historial_a_pdf(historial, filepath):
+    # Crear el documento PDF
+    pdf = SimpleDocTemplate(filepath, pagesize=letter)
+    elementos = []
+
+    # Estilo del título
+    styles = getSampleStyleSheet()
+    titulo_estilo = styles['Title']
+    titulo_estilo.alignment = 1  # Centrado
+
+    # Añadir el título al PDF
+    titulo = Paragraph("Historial de Gastos Personales", titulo_estilo)
+    elementos.append(titulo)
+
+    # Datos de la tabla
+    data = [["Descripción", "Monto (Bs)", "Fecha"]]
+    for gasto in historial:
+        data.append([gasto[1], f"{gasto[2]:.2f}", gasto[3]])
+
+    # Crear la tabla
+    tabla = Table(data)
+
+    # Estilo de la tabla
+    estilo = TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.whitesmoke, colors.lightgrey]),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),  # Alineación vertical centrada
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('TOPPADDING', (0, 1), (-1, -1), 6),
+        ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
+    ])
+    tabla.setStyle(estilo)
+
+    # Añadir la tabla a los elementos
+    elementos.append(tabla)
+
+    # Construir el PDF
+    pdf.build(elementos)
+
+def exportar_pdf_desde_historial(page, historial):
+    filepath = "C:/Users/USUARIO/Downloads/historial_gastos.pdf" #Ruta del archivo PDF (Modificar)
+    try:
+        exportar_historial_a_pdf(historial, filepath)
+        page.snack_bar = ft.SnackBar(
+            content=ft.Text("PDF generado exitosamente."),
+            bgcolor=ft.colors.GREEN_700
+        )
+        page.snack_bar.open = True
+    except Exception as e:
+        page.snack_bar = ft.SnackBar(
+            content=ft.Text(f"Error al generar el PDF: {e}"),
+            bgcolor=ft.colors.RED_700
+        )
+        page.snack_bar.open = True
+    page.update()
+    os.startfile(filepath)
+
 # Función para actualizar el historial de gastos
 def actualizar_historial(page):
     historial = cargar_historial()
@@ -184,9 +252,9 @@ def actualizar_historial(page):
         filas = [
             ft.DataRow(
                 cells=[
-                    ft.DataCell(ft.Text(gasto[1], color="#F6F6F6")),      # Descripción
-                    ft.DataCell(ft.Text(f"{gasto[2]:.2f} Bs", color="#F6F6F6")),  # Monto
-                    ft.DataCell(ft.Text(gasto[3], color="#F6F6F6"))       # Fecha
+                    ft.DataCell(ft.Text(gasto[1], color="#F6F6F6")), 
+                    ft.DataCell(ft.Text(f"{gasto[2]:.2f} Bs", color="#F6F6F6")), 
+                    ft.DataCell(ft.Text(gasto[3], color="#F6F6F6"))
                 ]
             ) for gasto in historial
         ]
@@ -198,6 +266,13 @@ def actualizar_historial(page):
                     ft.DataColumn(ft.Text("Fecha", color="#F6F6F6")),
                 ],
                 rows=filas
+            ),
+            ft.ElevatedButton(
+                text="Exportar a PDF",
+                icon=ft.icons.PICTURE_AS_PDF,
+                bgcolor="#D4D4CE",
+                color="#023246",
+                on_click=lambda e: exportar_pdf_desde_historial(page, historial)
             )
         ]
     page.update()
@@ -243,5 +318,6 @@ def mostrarPantalla2():
         padding=ft.padding.all(20),
         border_radius=10,
         bgcolor="#287094",
-        border=ft.border.all(1, "#D4D4CE"),
+        border=ft.border.all(2, "#D4D4CE"),
+        alignment=ft.alignment.center,
     )
