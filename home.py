@@ -19,7 +19,7 @@ class HomePage:
         # Guardar el email en el almacenamiento del cliente
         self.page.client_storage.set("user_email", self.user_email)
         
-        self.page.bgcolor = ft.colors.BLUE_GREY_800
+        self.page.bgcolor = "#287094"
         self.page.title = "Home"
         self.page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
         self.page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -50,8 +50,8 @@ class HomePage:
                     icon=ft.icons.PERSON,
                 ),
             ],
-            bgcolor=ft.colors.BLUE_900,
-            indicator_color=ft.colors.BLUE_300,
+            bgcolor="#023246",
+            indicator_color="D4D4CE",
             animation_duration=600,
             on_change=lambda e: self.cambiarContenido(e.control.selected_index)
         )

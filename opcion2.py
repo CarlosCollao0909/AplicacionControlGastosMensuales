@@ -12,16 +12,16 @@ def set_current_user(email):
 def abrirFormulario(page):
     descripcion_input = ft.TextField(
         label="Descripción",
-        border_color=ft.colors.BLUE_400,
-        focused_border_color=ft.colors.BLUE_800,
+        border_color="#D4D4CE",
+        focused_border_color="#D4D4CE",
         prefix_icon=ft.icons.DESCRIPTION
     )
     
     monto_input = ft.TextField(
         label="Monto",
         keyboard_type=ft.KeyboardType.NUMBER,
-        border_color=ft.colors.BLUE_400,
-        focused_border_color=ft.colors.BLUE_800,
+        border_color="#D4D4CE",
+        focused_border_color="#D4D4CE",
         prefix_icon=ft.icons.MONEY
     )
     
@@ -40,8 +40,8 @@ def abrirFormulario(page):
             )
         )
 
-    date_input = ft.Text(value="Selecciona la Fecha")
-    select_date_button = ft.ElevatedButton("Selecciona la Fecha", on_click=open_date_picker)
+    date_input = ft.Text(value="Selecciona la Fecha", color="#F6F6F6")
+    select_date_button = ft.ElevatedButton("Selecciona la Fecha", on_click=open_date_picker, bgcolor="#D4D4CE", color="#023246")
 
     mensaje = ft.Text(
         color=ft.colors.RED_400,
@@ -132,7 +132,7 @@ def abrirFormulario(page):
             "Registrar nuevo gasto",
             size=20,
             weight=ft.FontWeight.BOLD,
-            color=ft.colors.BLUE_900,
+            color="#F6F6F6",
         ),
         content=ft.Container(
             dialog_content,
@@ -141,16 +141,17 @@ def abrirFormulario(page):
         actions=[
             ft.TextButton(
                 "Cancelar",
-                style=ft.ButtonStyle(color=ft.colors.GREY_700),
+                style=ft.ButtonStyle(color="#D4D4CE"),
                 on_click=cerrarFormulario
             ),
             ft.TextButton(
                 "Guardar",
-                style=ft.ButtonStyle(color=ft.colors.BLUE_700),
+                style=ft.ButtonStyle(color="#F6F6F6"),
                 on_click=guardar_gasto
             ),
         ],
         actions_alignment=ft.MainAxisAlignment.END,
+        bgcolor="#023246"
     )
 
     page.dialog = dialog
@@ -175,7 +176,7 @@ def actualizar_historial(page):
             ft.Text(
                 "Sin gastos registrados.",
                 size=16,
-                color=ft.colors.GREY_700,
+                color="#D4D4CE",
                 italic=True
             )
         ]
@@ -183,18 +184,18 @@ def actualizar_historial(page):
         filas = [
             ft.DataRow(
                 cells=[
-                    ft.DataCell(ft.Text(gasto[1], color=ft.colors.BLUE_900)),      # Descripción
-                    ft.DataCell(ft.Text(f"{gasto[2]:.2f} Bs", color=ft.colors.BLUE_900)),  # Monto
-                    ft.DataCell(ft.Text(gasto[3], color=ft.colors.BLUE_900))       # Fecha
+                    ft.DataCell(ft.Text(gasto[1], color="#F6F6F6")),      # Descripción
+                    ft.DataCell(ft.Text(f"{gasto[2]:.2f} Bs", color="#F6F6F6")),  # Monto
+                    ft.DataCell(ft.Text(gasto[3], color="#F6F6F6"))       # Fecha
                 ]
             ) for gasto in historial
         ]
         tabla_historial.controls = [
             ft.DataTable(
                 columns=[
-                    ft.DataColumn(ft.Text("Descripción", color=ft.colors.BLUE_900)),
-                    ft.DataColumn(ft.Text("Monto", color=ft.colors.BLUE_900)),
-                    ft.DataColumn(ft.Text("Fecha", color=ft.colors.BLUE_900)),
+                    ft.DataColumn(ft.Text("Descripción", color="#F6F6F6")),
+                    ft.DataColumn(ft.Text("Monto", color="#F6F6F6")),
+                    ft.DataColumn(ft.Text("Fecha", color="#F6F6F6")),
                 ],
                 rows=filas
             )
@@ -210,7 +211,8 @@ contenido = ft.Column(
                 text="Nuevo gasto",
                 icon=ft.icons.ADD,
                 on_click=lambda e: abrirFormulario(e.page),
-                bgcolor=ft.colors.BLUE_700,
+                bgcolor="#D4D4CE",
+                foreground_color="#023246",
             ),
             alignment=ft.alignment.top_right,
             margin=ft.margin.only(right=20, top=20),
@@ -220,13 +222,13 @@ contenido = ft.Column(
                 value="Historial de gastos",
                 size=35,
                 weight=ft.FontWeight.BOLD,
-                color=ft.colors.BLUE_900,
+                color="#F6F6F6",
             ),
             margin=ft.margin.only(top=20, bottom=20),
         ),
         ft.Divider(
             height=2,
-            color=ft.colors.BLUE_200,
+            color="#D4D4CE",
         ),
         tabla_historial,
     ],
@@ -240,6 +242,6 @@ def mostrarPantalla2():
         margin=ft.margin.Margin(10, 50, 10, 10),
         padding=ft.padding.all(20),
         border_radius=10,
-        bgcolor=ft.colors.WHITE,
-        border=ft.border.all(1, ft.colors.BLUE_200),
+        bgcolor="#287094",
+        border=ft.border.all(1, "#D4D4CE"),
     )

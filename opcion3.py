@@ -16,11 +16,11 @@ except:
 normal_radius = 120
 hover_radius = 140
 normal_title_style = ft.TextStyle(
-    size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD
+    size=12, color="#F6F6F6", weight=ft.FontWeight.BOLD
 )
 hover_title_style = ft.TextStyle(
     size=16,
-    color=ft.colors.WHITE,
+    color="#F6F6F6",
     weight=ft.FontWeight.BOLD,
     shadow=ft.BoxShadow(blur_radius=2, color=ft.colors.BLACK54),
 )
@@ -31,9 +31,9 @@ def badge(icon, size):
         ft.Icon(icon),
         width=size,
         height=size,
-        border=ft.border.all(1, ft.colors.BROWN),
+        border=ft.border.all(1, "#D4D4CE"),
         border_radius=size / 2,
-        bgcolor=ft.colors.WHITE,
+        bgcolor="#287094",
     )
 
 def get_monthly_expenses(usuario_id):
@@ -79,13 +79,13 @@ def create_pie_chart(usuario_id):
         return ft.Text(
             "No hay gastos registrados este año",
             size=20,
-            color=ft.colors.WHITE,
+            color="#F6F6F6",
             weight=ft.FontWeight.BOLD
         )
     
     # Colores para los meses
     colors = [
-        ft.colors.BLUE, ft.colors.GREEN, ft.colors.PURPLE, 
+        ft.colors.DEEP_ORANGE, ft.colors.GREEN, ft.colors.PURPLE, 
         ft.colors.ORANGE, ft.colors.PINK, ft.colors.CYAN,
         ft.colors.AMBER, ft.colors.LIME, ft.colors.INDIGO,
         ft.colors.TEAL, ft.colors.BROWN, ft.colors.RED
@@ -153,7 +153,7 @@ class PantallaReportes(ft.UserControl):
                         size=30,
                         weight=ft.FontWeight.BOLD,
                         italic=True,
-                        color=ft.colors.WHITE,
+                        color="#F6F6F6",
                     ),
                     chart,
                     ft.Text(
@@ -161,7 +161,7 @@ class PantallaReportes(ft.UserControl):
                         text_align=ft.TextAlign.CENTER,
                         size=20,
                         weight=ft.FontWeight.BOLD,
-                        color=ft.colors.WHITE,
+                        color="#F6F6F6",
                     ) if total_gastos > 0 else None
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER

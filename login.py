@@ -9,18 +9,18 @@ create_db()
 def loginPage(page: ft.Page):
     email = ft.TextField(
         expand=True,
-        color="white",
+        color="#F6F6F6",
         border_color="transparent",
         hint_text="Email",
-        hint_style=ft.TextStyle(color="#b9babb"),
+        hint_style=ft.TextStyle(color="#D4D4CE"),
         content_padding=0
     )
     password = ft.TextField(
         expand=True,
-        color="white",
+        color="#F6F6F6",
         border_color="transparent",
         hint_text="Password",
-        hint_style=ft.TextStyle(color="#b9babb"),
+        hint_style=ft.TextStyle(color="#D4D4CE"),
         content_padding=0,
         password=True,
         can_reveal_password=True
@@ -54,7 +54,7 @@ def loginPage(page: ft.Page):
         page.clean()
         page.add(registroPage(page))  # Llamar a la página de registro
 
-    page.bgcolor = ft.colors.BLUE_GREY_800
+    page.bgcolor = "#287094"
     page.title = "Login"
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -77,11 +77,12 @@ def loginPage(page: ft.Page):
                                 size=38,
                                 weight=ft.FontWeight.BOLD,
                                 font_family="Montserrat",
+                                color="#F6F6F6"
                             ),
                             ft.Text(
                                 "Ingresa tus credenciales",
                                 size=18,
-                                color="#b9babb",
+                                color="#F6F6F6",
                                 font_family="Montserrat",
                             )
                         ]
@@ -90,7 +91,7 @@ def loginPage(page: ft.Page):
                 ft.Container(
                     width=250,
                     height=45,
-                    bgcolor="#272b30",
+                    bgcolor="#023246",
                     border_radius=10,
                     padding=ft.padding.only(left=10, right=10, top=5, bottom=5),
                     content=ft.Row(
@@ -98,9 +99,9 @@ def loginPage(page: ft.Page):
                         controls=[
                             ft.Icon(
                                 ft.icons.EMAIL,
-                                color="#b9babb"
+                                color="#D4D4CE"
                             ),
-                            ft.VerticalDivider(width=1, color="#b9babb"),
+                            ft.VerticalDivider(width=1, color="#D4D4CE"),
                             email
                         ]
                     )
@@ -108,7 +109,7 @@ def loginPage(page: ft.Page):
                 ft.Container(
                     width=250,
                     height=45,
-                    bgcolor="#272b30",
+                    bgcolor="#023246",
                     border_radius=10,
                     padding=ft.padding.only(left=10, right=10, top=5, bottom=5),
                     content=ft.Row(
@@ -116,9 +117,9 @@ def loginPage(page: ft.Page):
                         controls=[
                             ft.Icon(
                                 ft.icons.LOCK,
-                                color="#b9babb"
+                                color="#D4D4CE"
                             ),
-                            ft.VerticalDivider(width=1, color="#b9babb"),
+                            ft.VerticalDivider(width=1, color="#D4D4CE"),
                             password
                         ]
                     )
@@ -127,14 +128,14 @@ def loginPage(page: ft.Page):
                     padding=ft.padding.only(top=15),
                     content=ft.ElevatedButton(
                         text="Ingresar",
-                        bgcolor="#4A90E2",
-                        color="white",
+                        bgcolor="#D4D4CE",
+                        color="#023246",
                         width=250,
                         height=45,
                         on_click=mostrarInicio,
                         style=ft.ButtonStyle(
                             text_style=ft.TextStyle(
-                                color="white",
+                                color="#23246",
                                 font_family="Montserrat",
                                 weight=ft.FontWeight.BOLD,
                                 size=18
@@ -146,7 +147,7 @@ def loginPage(page: ft.Page):
                     padding=ft.padding.only(top=15),
                     content=ft.CupertinoButton(
                         text="¿No tienes cuenta? Regístrate",
-                        color="white",
+                        color="#F6F6F6",
                         width=250,
                         on_click=irARegistro,  # Función para ir a la página de registro
                     ),
@@ -160,34 +161,34 @@ def loginPage(page: ft.Page):
 def registroPage(page: ft.Page):
     nombre = ft.TextField(
         expand=True,
-        color="white",
+        color="#F6F6F6",
         border_color="transparent",
         hint_text="Nombre",
-        hint_style=ft.TextStyle(color="#b9babb"),
+        hint_style=ft.TextStyle(color="#D4D4CE"),
         content_padding=0
     )
     apellido = ft.TextField(
         expand=True,
-        color="white",
+        color="#F6F6F6",
         border_color="transparent",
         hint_text="Apellido",
-        hint_style=ft.TextStyle(color="#b9babb"),
+        hint_style=ft.TextStyle(color="#D4D4CE"),
         content_padding=0
     )
     email = ft.TextField(
         expand=True,
-        color="white",
+        color="#F6F6F6",
         border_color="transparent",
         hint_text="Email",
-        hint_style=ft.TextStyle(color="#b9babb"),
+        hint_style=ft.TextStyle(color="#D4D4CE"),
         content_padding=0
     )
     password = ft.TextField(
         expand=True,
-        color="white",
+        color="#F6F6F6",
         border_color="transparent",
         hint_text="Password",
-        hint_style=ft.TextStyle(color="#b9babb"),
+        hint_style=ft.TextStyle(color="#D4D4CE"),
         content_padding=0,
         password=True,
         can_reveal_password=True
@@ -221,7 +222,7 @@ def registroPage(page: ft.Page):
         page.clean()
         page.add(loginPage(page))  # Limpiar y mostrar la página de inicio de sesión
 
-    page.bgcolor = ft.colors.BLUE_GREY_800
+    page.bgcolor = "#287094"
     page.title = "Registro"
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -242,13 +243,14 @@ def registroPage(page: ft.Page):
                             ft.Text(
                                 "Registro de usuario",
                                 size=38,
+                                color="#F6F6F6",
                                 weight=ft.FontWeight.BOLD,
                                 font_family="Montserrat",
                             ),
                             ft.Text(
                                 "Crea una cuenta nueva",
                                 size=18,
-                                color="#b9babb",
+                                color="#F6F6F6",
                                 font_family="Montserrat",
                             )
                         ]
@@ -257,7 +259,7 @@ def registroPage(page: ft.Page):
                 ft.Container(
                     width=250,
                     height=45,
-                    bgcolor="#272b30",
+                    bgcolor="#023246",
                     border_radius=10,
                     padding=ft.padding.only(left=10, right=10, top=5, bottom=5),
                     content=ft.Row(
@@ -265,9 +267,9 @@ def registroPage(page: ft.Page):
                         controls=[
                             ft.Icon(
                                 ft.icons.PERSON,
-                                color="#b9babb"
+                                color="#D4D4CE"
                             ),
-                            ft.VerticalDivider(width=1, color="#b9babb"),
+                            ft.VerticalDivider(width=1, color="#D4D4CE"),
                             nombre
                         ]
                     )
@@ -275,7 +277,7 @@ def registroPage(page: ft.Page):
                 ft.Container(
                     width=250,
                     height=45,
-                    bgcolor="#272b30",
+                    bgcolor="#023246",
                     border_radius=10,
                     padding=ft.padding.only(left=10, right=10, top=5, bottom=5),
                     content=ft.Row(
@@ -283,9 +285,9 @@ def registroPage(page: ft.Page):
                         controls=[
                             ft.Icon(
                                 ft.icons.PERSON,
-                                color="#b9babb"
+                                color="#D4D4CE"
                             ),
-                            ft.VerticalDivider(width=1, color="#b9babb"),
+                            ft.VerticalDivider(width=1, color="#D4D4CE"),
                             apellido
                         ]
                     )
@@ -293,7 +295,7 @@ def registroPage(page: ft.Page):
                 ft.Container(
                     width=250,
                     height=45,
-                    bgcolor="#272b30",
+                    bgcolor="#023246",
                     border_radius=10,
                     padding=ft.padding.only(left=10, right=10, top=5, bottom=5),
                     content=ft.Row(
@@ -301,9 +303,9 @@ def registroPage(page: ft.Page):
                         controls=[
                             ft.Icon(
                                 ft.icons.EMAIL,
-                                color="#b9babb"
+                                color="#D4D4CE"
                             ),
-                            ft.VerticalDivider(width=1, color="#b9babb"),
+                            ft.VerticalDivider(width=1, color="#D4D4CE"),
                             email
                         ]
                     )
@@ -311,7 +313,7 @@ def registroPage(page: ft.Page):
                 ft.Container(
                     width=250,
                     height=45,
-                    bgcolor="#272b30",
+                    bgcolor="#023246",
                     border_radius=10,
                     padding=ft.padding.only(left=10, right=10, top=5, bottom=5),
                     content=ft.Row(
@@ -319,9 +321,9 @@ def registroPage(page: ft.Page):
                         controls=[
                             ft.Icon(
                                 ft.icons.LOCK,
-                                color="#b9babb"
+                                color="#D4D4CE"
                             ),
-                            ft.VerticalDivider(width=1, color="#b9babb"),
+                            ft.VerticalDivider(width=1, color="#D4D4CE"),
                             password
                         ]
                     )
@@ -330,14 +332,14 @@ def registroPage(page: ft.Page):
                     padding=ft.padding.only(top=15),
                     content=ft.ElevatedButton(
                         text="Registrar",
-                        bgcolor="#4A90E2",
-                        color="white",
+                        bgcolor="#D4D4CE",
+                        color="#023246",
                         width=250,
                         height=45,
                         on_click=registrarUsuario,
                         style=ft.ButtonStyle(
                             text_style=ft.TextStyle(
-                                color="white",
+                                color="#23246",
                                 font_family="Montserrat",
                                 weight=ft.FontWeight.BOLD,
                                 size=18
@@ -349,7 +351,7 @@ def registroPage(page: ft.Page):
                     padding=ft.padding.only(top=15),
                     content=ft.CupertinoButton(
                         text="¿Ya tienes cuenta? Inicia sesión",
-                        color="white",
+                        color="#F6F6F6",
                         width=250,
                         on_click=regresarALogin,
                     ),

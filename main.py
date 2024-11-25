@@ -9,7 +9,7 @@ import flet as ft
 from login import loginPage
 
 def main(page: ft.Page):
-    page.bgcolor = ft.colors.BLUE_GREY_800
+    page.bgcolor = "#287094"
     def comenzar(e):
         page.clean()
         page.add(loginPage(page))
@@ -37,14 +37,17 @@ def main(page: ft.Page):
                     ),
                     ft.ElevatedButton(
                         text = "Iniciar",
-                        bgcolor = "#4A90E2",
-                        color = ft.colors.WHITE,
+                        bgcolor = "#D4D4CE",
+                        color = "#023246",
+                        width=175,
+                        height=45,
                         style = ft.ButtonStyle(
                             text_style = ft.TextStyle(
-                                color = "white",
+                                color = "#023246",
                                 font_family = "Montserrat",
+                                italic = True,
                                 weight = ft.FontWeight.BOLD,
-                                size = 18
+                                size = 24
                             ),
                         ), 
                         on_click=comenzar

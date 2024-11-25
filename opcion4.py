@@ -22,21 +22,21 @@ class PerfilUsuario(ft.UserControl):
         self.nombre_texto = ft.Text(
             f"Nombre: {nombre}",
             size=20,
-            color="white",
+            color="#F6F6F6",
             weight=ft.FontWeight.BOLD,
             text_align=ft.TextAlign.CENTER,
         )
         self.apellido_texto = ft.Text(
             f"Apellido: {apellido}",
             size=20,
-            color="white",
+            color="#F6F6F6",
             weight=ft.FontWeight.BOLD,
             text_align=ft.TextAlign.CENTER,
         )
         self.email_texto = ft.Text(
             f"Email: {email}",
             size=20,
-            color="white",
+            color="#F6F6F6",
             weight=ft.FontWeight.BOLD,
             text_align=ft.TextAlign.CENTER,
         )
@@ -53,6 +53,27 @@ class PerfilUsuario(ft.UserControl):
         return ft.Container(
             content=ft.Column(
                 [
+                    # Botón de cerrar sesión
+                    ft.Container(
+                        width=300,
+                        content=ft.ElevatedButton(
+                            width=63,
+                            bgcolor="#e61a23",
+                            style=ft.ButtonStyle(
+                                color="#F6F6F6",
+                            ),
+                            content=ft.Icon(name=ft.icons.EXIT_TO_APP),
+                            on_click=self.cerrar_sesion,
+                        ),
+                        margin=ft.margin.only(top=15),
+                        alignment=ft.alignment.top_right,
+                        shadow=ft.BoxShadow(
+                            spread_radius=1,
+                            blur_radius=15,
+                            color=ft.colors.BLACK12,
+                            offset=ft.Offset(0, 5),
+                        ),
+                    ),
                     # Contenedor para la imagen de perfil
                     ft.Container(
                         content=ft.Image(
@@ -70,7 +91,7 @@ class PerfilUsuario(ft.UserControl):
                         content=ft.Text(
                             "Perfil de Usuario",
                             size=32,
-                            color="white",
+                            color="#F6F6F6",
                             weight=ft.FontWeight.BOLD,
                             text_align=ft.TextAlign.CENTER,
                         ),
@@ -90,44 +111,8 @@ class PerfilUsuario(ft.UserControl):
                         ),
                         padding=20,
                         border_radius=10,
-                        bgcolor="#272b30",
+                        bgcolor="#287094",
                         width=300,
-                    ),
-                    # Botón de cerrar sesión
-                    ft.Container(
-                        content=ft.ElevatedButton(
-                            text="Cerrar Sesión",
-                            bgcolor="#4A90E2",
-                            color="white",
-                            width=250,
-                            height=45,
-                            on_click=self.cerrar_sesion,
-                            style=ft.ButtonStyle(
-                                shape=ft.RoundedRectangleBorder(radius=10),
-                                elevation=5,
-                                animation_duration=300,
-                                color=ft.colors.WHITE,
-                                bgcolor={
-                                    ft.MaterialState.DEFAULT: "#4A90E2",
-                                    ft.MaterialState.HOVERED: "#357ABD",
-                                    ft.MaterialState.PRESSED: "#2C6AAC",
-                                },
-                                text_style=ft.TextStyle(
-                                    color="white",
-                                    font_family="Montserrat",
-                                    weight=ft.FontWeight.BOLD,
-                                    size=18
-                                ),
-                            )
-                        ),
-                        margin=ft.margin.only(top=30),
-                        alignment=ft.alignment.center,
-                        shadow=ft.BoxShadow(
-                            spread_radius=1,
-                            blur_radius=15,
-                            color=ft.colors.BLACK12,
-                            offset=ft.Offset(0, 5),
-                        ),
                     ),
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
